@@ -1,0 +1,51 @@
+specVersion: 0.0.2
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Crc20
+    network: mainnet
+    source:
+      abi: Crc20
+      address: "0x9278C8693e7328bef49804BacbFb63253565dffD"
+      startBlock: 1120505
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - Burn
+        - LogSetAuthority
+        - LogSetOwner
+        - Mint
+        - Start
+        - Stop
+        - Transfer
+        - __CronosSendToEthereum
+        - __CronosSendToIbc
+      abis:
+        - name: Crc20
+          file: Crc20/abis/Crc20.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Burn(indexed address,uint256)
+          handler: handleBurn
+        - event: LogSetAuthority(indexed address)
+          handler: handleLogSetAuthority
+        - event: LogSetOwner(indexed address)
+          handler: handleLogSetOwner
+        - event: Mint(indexed address,uint256)
+          handler: handleMint
+        - event: Start()
+          handler: handleStart
+        - event: Stop()
+          handler: handleStop
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: __CronosSendToEthereum(address,uint256,uint256)
+          handler: handle__CronosSendToEthereum
+        - event: __CronosSendToIbc(address,string,uint256)
+          handler: handle__CronosSendToIbc
+      file: Crc20/Crc20.wasm

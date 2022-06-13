@@ -1,4 +1,4 @@
-specVersion: 0.0.1
+specVersion: 0.0.2
 schema:
   file: ./schema.graphql
 dataSources:
@@ -6,11 +6,12 @@ dataSources:
     name: Crc20
     network: mainnet
     source:
-      address: "0x9278C8693e7328bef49804BacbFb63253565dffD"
       abi: Crc20
+      address: "0x9278C8693e7328bef49804BacbFb63253565dffD"
+      startBlock: 1120505
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.2
+      apiVersion: 0.0.4
       language: wasm/assemblyscript
       entities:
         - Approval
